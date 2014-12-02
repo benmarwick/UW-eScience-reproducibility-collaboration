@@ -1,0 +1,198 @@
+---
+title: "Reproducible Research with Collaborators"
+author: "Ben Marwick (bmarwick@uw.edu)"
+date: "December, 2014"
+output:
+  ioslides_presentation:
+    incremental: yes
+    css: markdown.css
+subtitle: "...who just aren't that into it"
+---
+
+## Motivation {.big}
+
+- To **do** reproducible research & encourage others to do so also
+
+- Increase **credibility**: article as only advertisement; show the correctness of my results 
+
+- Increase **impact**: allow reuse of method; currently the main beneficiary is future me
+
+## Challenges
+
+<div class="columns-2">
+![](https://farm4.staticflickr.com/3662/3674715600_57a4e914e4.jpg)
+
+* Pre-publication work viewed as trade secrets 
+
+* Anxiety about exposure to ridicule 
+
+* Wide variation in data analysis tools
+
+* Scripted analyses are uncommon 
+</div>
+
+## Culture shock
+
+* Oberg (1960) popularized the term culture shock as the "anxiety that results from losing all of our familiar signs and symbols of social
+intercourse"
+
+* Weaver (1994) says culture shock has three basic
+causal explanations:
+1. the loss of familiar cues,
+2. the breakdown of interpersonal communications, and
+3. an identity crisis
+
+* Phenomenological etiology: A researcher cannot convey and validate central aspects of their identity
+
+## Technical challenges {.big}
+
+* Dependencies 
+
+* Imprecise documentation
+
+* Code rot
+
+* Barriers to adoption and reuse in existing solutions
+
+## Solutions 
+
+* For the cultural problems
+1. Do all of the work
+2. Validate
+3. Isolate
+4. Educate
+
+* For the technical problems
+1. Workflow software
+2. Virtual machines
+3. Linux Containers
+
+## Do all the work  {.big}
+
+* Repository with code and data (R markdown file, scripts, [RProj](https://github.com/benmarwick/Pleistocene-aged-stone-artefacts-from-Jerimalai--East-Timor/blob/master/Marwick-et-al-Jeremalai-lithics-2014.Rproj), R package)
+
+* Review cycle means MS Word is a necessary format
+
+* Code is circulated with co-authors, but they don't do anything with it 
+
+* Cited and described in methods section
+
+## Validation {.big}
+
+* Decipher analysis in Excel or SPSS file
+
+* Recompute all or some with R
+
+* Create repository with R code and data
+
+* More like a lab notebook, not cited in manuscript
+
+    - [Osseous Artefacts](https://github.com/benmarwick/Aplin-et-al-Osseous-artefacts-island-SEA)
+
+## Isolation {.big}
+
+* Keep my contribution self-contained
+
+* Create repository for my contribution (from specific commit or release)
+
+* Cite repository in publication at figure caption (with no explanation)
+
+    - [Putslaagte](https://github.com/benmarwick/Particle-size-analysis-Putslaagte-1) [paper](http://www.sciencedirect.com/science/article/pii/S1040618214003036)
+    - [Madjebebe](https://github.com/benmarwick/Rocks-and-burials-at-Madjebebe) [paper](http://onlinelibrary.wiley.com/doi/10.1002/arco.5039/abstract)
+    - [Sulawesi](http://github.com/benmarwick/Stratigraphy-and-radiocarbon-dates-from-Gua-Mo-o-hono-Sulawesi)
+    
+## Education {.big}
+
+* Require student collaborators to acquire skills (sneak into coursework, require it for graduate student milestones, Software Carpentry)
+
+* Normalise scripted analyses by talking about it, showing it, citing it (at appropriate moments...)
+
+* Advocate Open Methods, flattery often works (open science may be a bridge too far for some)
+
+## Technical problems {.big}
+
+* Workflow software: elegant but esoteric & nobody uses them
+
+* [Virtual machine](http://collaboratool.berkeley.edu/): isolated & intelligible but heavyweight & black box
+
+* Linux container: in their infancy...
+
+## {.center}
+<img src="https://d3oypxn00j2a10.cloudfront.net/0.12.6/img/homepage/docker-whale-home-logo.png">
+
+## Docker
+
+* Operating system-level visualization: very lightweight Linux VM 
+
+* Plain text [Dockerfile](https://github.com/rocker-org/hadleyverse/blob/master/Dockerfile)   
+    - defines and documents the image
+    - includes all software dependencies down to the level of the OS
+    - is easily stored, shared and versioned
+    - minimizing dependency and code rot problems
+
+* My use is inspired by the [rocker project](https://github.com/rocker-org/rocker/wiki/) of Carl Boettiger & Dirk Eddelbuettel, and [Carl's paper](http://arxiv.org/abs/1410.0846)
+
+## Docker and barriers to adoption
+
+* Is optimized at the level of single applications, for me this is RStudio and the shell
+
+* Less disruptive to established workflows; not a drain on my laptop, I can use my usual text editor, use RStudio in my web browser, etc.
+
+* Highly portable to give identical environments across different machines; images can be snapshotted
+
+* Reusing and remixing images is trivial
+
+* [Docker Hub](https://registry.hub.docker.com/u/rocker/hadleyverse/) gives free open hosting and continuous integration for images (can link to dockerfiles hosted on github, etc.)
+
+## Limitations of Docker {.big}
+
+* Docker does not provide complete visualization but relies on the Linux kernel provided by the host
+
+* Docker is limited to 64 bit host machines
+
+* On Windows & OSX Docker must still be run in a fully virtualized environment (VirtualBox). The [boot2docker](http://boot2docker.io/) tool helps, but could be smoother 
+
+* Potential security issues
+
+* Will Docker be significantly adopted by any scientific research or teaching community?
+
+## Future directions {.big}
+
+* Increase visibility of scripted analyses to reduce culture shock
+
+* Create opportunities with minimal [inessential weirdness](http://www.classmatters.org/2006_07/its-not-them.php) for students to learn & peers to familiarize (Software Carpentry, Open Methods)
+
+* Research project as R package (rather than RProj, scripts, etc.)
+
+* Document dependencies with Dockerfile and use Docker as a common computational environment for research and teaching
+
+## Colophon
+
+Presentation written in [R Markdown using ioslides](http://rmarkdown.rstudio.com/ioslides_presentation_format.html)
+
+Compiled into HTML5 using [RStudio](http://www.rstudio.com/ide/) & [knitr]
+
+Source code hosting:
+https://github.com/benmarwick/UW-eScience-reproducibility-collaboration
+
+ORCID: http://orcid.org/0000-0001-7879-4531
+
+Licensing: 
+
+* Presentation: [CC-BY-3.0 ](http://creativecommons.org/licenses/by/3.0/us/)
+
+* Source code: [MIT](http://opensource.org/licenses/MIT) 
+
+## Citations 
+
+- K. Oberg, 1960. Cultural shock: Adjustment to new cultural environments, Practical Anthropology 7 (1960), pp. 177-182.
+
+- G.R. Weaver, 1994. Understanding and coping with cross-cultural adjustment stress. In: G.R. Weaver, Editor, Culture, communication and conflict: Readings in intercultural relations, Ginn Press,Needham Heights, MA, pp. 169-189. 
+
+- Boettiger, Carl 2014 [An introduction to Docker for reproducible research, with examples from the R environment](http://arxiv.org/abs/1410.0846) http://arxiv.org/abs/1410.0846)
+
+
+
+
+
+
