@@ -122,7 +122,7 @@ causal explanations:
 
 ## Docker
 
-* Operating system-level visualization: very lightweight Linux VM 
+* Operating system-level virtualization: very lightweight Linux VM 
 
 * Plain text [Dockerfile](https://github.com/rocker-org/hadleyverse/blob/master/Dockerfile)   
     - defines and documents the image
